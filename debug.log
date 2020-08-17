@@ -1,0 +1,8 @@
+[0816/194747.712:ERROR:process_info.cc(359)] UncheckedAllocate
+[0816/194907.646:ERROR:process_info.cc(329)] VirtualQueryEx: Access is denied. (0x5)
+[0816/194907.647:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+[0816/194907.647:ERROR:process_memory_win.cc(39)] Failed to initialize ProcessInfo.
+[0816/194907.647:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[0816/200545.713:ERROR:process_info.cc(359)] UncheckedAllocate
+[0816/204817.450:ERROR:process_info.cc(359)] UncheckedAllocate
+[0817/123801.541:ERROR:process_info.cc(359)] UncheckedAllocate
