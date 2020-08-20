@@ -9,7 +9,7 @@ And User Get the Weather Info
 
 Examples:
 |city|
-|Indore|
+|Pune|
 
 
   Scenario Outline: Verify the Weather details from API
@@ -18,7 +18,7 @@ Examples:
     And Validate the Status code 
  Examples:
 |city|
-|Indore|   
+|Pune|   
 
 
  Scenario: Verify the data from Web and API
