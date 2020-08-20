@@ -24,7 +24,7 @@ monochrome = true,
 tags="@WeatherCheck"
 )
 
-public class TestRunner {
+public class TestRunner extends BaseClass {
 	
 	@BeforeClass
     public static void setup() {
@@ -38,6 +38,7 @@ public class TestRunner {
 	@AfterClass
     public static void writeExtentReport() {
         Reporter.loadXMLConfig(new File("config/report.xml"));
+        driver.quit();
     
     }
 }
