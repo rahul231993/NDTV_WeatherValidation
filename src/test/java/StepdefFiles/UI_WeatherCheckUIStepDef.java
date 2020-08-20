@@ -44,28 +44,23 @@ public String CityName= "";
 	@And("^Click on the WebPage and Provide City name \"([^\"]*)\"$")
 	public void Click_on_the_WebPage_and_Provide_CityName(String cityName) throws Throwable {
 		CityName= cityName;
-		Thread.sleep(6000);
 
-		waitForTheElementToVisible(pfweatherpage.city_element,30);
+		waitForTheElementToVisible(pfweatherpage.city_element,50);
 		pfweatherpage.city_element.click();
-		Thread.sleep(6000);
 
-		waitForTheElementToVisible(pfweatherpage.infoHeader,30);
+		waitForTheElementToVisible(pfweatherpage.infoHeader,50);
 		System.out.println(pfweatherpage.infoHeader.getText());
-		Thread.sleep(5000);
 
-		waitForTheElementToVisible(pfweatherpage.SearchBox,30);
+		waitForTheElementToVisible(pfweatherpage.SearchBox,50);
 		pfweatherpage.SearchBox.sendKeys(CityName);
 		
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//label[contains(text(),'"+CityName+"')]")).click();
-		Thread.sleep(5000);
-
-		WebElement your_city= driver.findElement(By.xpath("//div[text()='"+CityName+"']"));
-		waitForTheElementToVisible(your_city,30);
-		your_city.click();
-		Thread.sleep(6000);
-
+		WebElement searchedCity=driver.findElement(By.xpath("//label[contains(text(),'"+CityName+"')]"));
+		waitForTheElementToVisible(searchedCity,50);
+		searchedCity.click();
+		
+		WebElement searchedCityOnMap= driver.findElement(By.xpath("//div[text()='"+CityName+"']"));
+		waitForTheElementToVisible(searchedCityOnMap,50);
+		searchedCityOnMap.click();
 	}
 
 	@And("^User Get the Weather Info$")
@@ -75,7 +70,6 @@ public String CityName= "";
 				
 		for (int i = 0; i < weather_data.size(); i++) {
 			String data = weather_data.get(i).getText();
-			//System.out.println(data);
 			String [] weatherdata= data.split(":");
 			String key=weatherdata[0].trim().replaceAll("\\s+", "_");
 			String value=weatherdata[1].trim().replaceAll("\\s+", "_");

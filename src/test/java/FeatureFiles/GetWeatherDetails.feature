@@ -1,7 +1,6 @@
 @WeatherCheck
 Feature: Validating Place API's
 
-
 Scenario Outline: Verify the Weather details from UI
 Given User Navigate to Application
 And Navigate to the Weather page
