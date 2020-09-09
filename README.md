@@ -32,5 +32,9 @@ Below components are used in the Framework:
 7. Pom.xml
  We have maintained Maven project, hence maintaing Pom.xml file and all the required  dependecy and plugins in this. 
 
+8. Properties File:
+  for storing the data seperately, these files are maintained and we are fetching the data at run time.
+  For comparision : we have stored the data from UI and API to Properties file and then comapred that info.
+
 
 
