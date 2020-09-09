@@ -1,5 +1,8 @@
 package Utils;
 
+
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,12 +12,19 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriver; 
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.aventstack.extentreports.utils.FileUtil;
+
+import gherkin.lexer.Sr_cyrl;
 
 
 public class BaseClass {
@@ -28,9 +38,9 @@ public BaseClass(){
     public static  WebDriverWait wait;
     
     
-	public void WebDriverInit(String Browser) {
+	public void WebDriverInit(String Browser) throws IOException {
 		if(Browser.equalsIgnoreCase("Chrome")) {
-			
+			deleteScreenshotFolder();
 			Map<String, Object> prefs = new HashMap<String, Object>();
 			prefs.put("profile.default_content_setting_values.notifications", 2);
 			ChromeOptions options = new ChromeOptions();
@@ -98,6 +108,23 @@ public BaseClass(){
 	     wait.until(ExpectedConditions.visibilityOf(Element));
 	}
 	
+	
+	public void takeSCreenshot(String fileName) throws IOException {
+		TakesScreenshot scrShot =((TakesScreenshot)driver);
+	    File srcFile= scrShot.getScreenshotAs(OutputType.FILE);
+	    String location = "Print\\Screenshots";
+	    File DestFile=new File(location + fileName + "_" + ".png");
+	    FileUtils.copyFile(srcFile, DestFile);
+	}
+	
+	public static void deleteScreenshotFolder() throws IOException {
+		
+		String filePath = "Print";
+	      File file = new File(filePath);
+	      FileUtils.deleteDirectory(file);
+	      System.out.println("Files deleted........");
+		
+	}
 	
 	
 	

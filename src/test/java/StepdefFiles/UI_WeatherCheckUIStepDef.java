@@ -23,27 +23,30 @@ public String CityName= "";
 	public void User_Navigate_to_Application() throws Throwable {
 		String url = GetData("url", "PropertiesFile\\Environment.properties");
 		initURL(url);
+		takeSCreenshot("NDTVHomePage");
 	}
-//Navigation till NDTV Weather Page
+	
+//Navigation till NDTV Weather Page,
 	@And("^Navigate to the Weather page$")
 	public void Navigate_to_the_Weather_page() throws Throwable {
 
 		String title1 = driver.getTitle();
 		System.out.println("Title of the Page is " + title1);
-//Applying the Wait for 30 Second 
 		waitForTheElementToVisible(pfhomepage.threedots,30);
 		pfhomepage.threedots.click();
-//Applying the Wait for 30 Second 		
 		waitForTheElementToVisible(pfhomepage.Weathertab,30);
 		pfhomepage.Weathertab.click();
 //Fetching the Title of the Weather Page after Navigation 		
 		String title2 = driver.getTitle();
 		System.out.println("Title of the Page is " + title2);
+		takeSCreenshot("WeatherHomePage");
 		
 	}
+	
+	
 
-	@And("^Click on the WebPage and Provide City name \"([^\"]*)\"$")
-	public void Click_on_the_WebPage_and_Provide_CityName(String cityName) throws Throwable {
+	@And("^User search the desired City name \"([^\"]*)\" in the Search box$")
+	public void User_Search_The_Desired_City_Name_In_The_SearchBox(String cityName) throws Throwable {
 		CityName= cityName;
 //Clicking on any random Value on Weather Map
 		waitForTheElementToVisible(pfweatherpage.city_element,50);
@@ -56,14 +59,23 @@ public String CityName= "";
 		WebElement searchedCity=driver.findElement(By.xpath("//label[contains(text(),'"+CityName+"')]"));
 		waitForTheElementToVisible(searchedCity,50);
 		searchedCity.click();
+		takeSCreenshot("SearchedCity");
+	}
+
+	@And("^User click on the searched city on Map with City name as \"([^\"]*)\"$")
+	public void User_click_on_the_searched_city_on_Map(String cityName) throws Throwable {
+		CityName= cityName;
 //Clicking on the Searched City on Weather Map 		
 		WebElement searchedCityOnMap= driver.findElement(By.xpath("//div[text()='"+CityName+"']"));
 		waitForTheElementToVisible(searchedCityOnMap,50);
 		searchedCityOnMap.click();
+		takeSCreenshot("DesiredCityWeatherDetails");
 	}
-
-	@And("^User Get the Weather Info$")
-	public void User_Get_the_Weather_Info() throws Throwable {
+	
+	
+	
+	@And("^User Store the WeatherInfo to Properties file$")
+	public void User_Stor_the_WeatherInfo_to_Properties_file() throws Throwable {
 //Fetching all the Weather details for a city and storing it into a List of WebElement
 		List<WebElement> weather_data = driver.findElements(By.xpath("//span[contains(text(),'"+CityName+"')]//following::b"));
 

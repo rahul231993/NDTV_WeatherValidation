@@ -1,6 +1,7 @@
 package Runner;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,7 +28,7 @@ tags="@WeatherCheck"
 public class TestRunner extends BaseClass {
 	
 	@BeforeClass
-    public static void setup() {
+    public static void setup() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         ExtentProperties extentProperties = ExtentProperties.INSTANCE;
         extentProperties.setReportPath("target/cucumber-reports/"+timeStamp.replace(":","_").replace(".","_")+".html");
