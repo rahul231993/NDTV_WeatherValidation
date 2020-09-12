@@ -126,6 +126,10 @@ public BaseClass(){
 		
 	}
 	
+	public void AssertWithScreenshot() {
+		System.out.println("Need to write code here");
+	}
+	
 	
 	
 }
